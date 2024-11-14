@@ -1,0 +1,52 @@
+$tableParams = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryAccessLog_CL",
+            "columns": [
+                {
+                    "name": "TimeGenerated",
+                    "type": "datetime",
+                    "description": "The time at which the data was generated"
+                },
+               {
+                    "name": "traceid",
+                    "type": "string",
+                    "description": "Trace ID"
+                },
+                {
+                    "name": "userip",
+                    "type": "string",
+                    "description": "User IP address"
+                },
+                {
+                    "name": "username",
+                    "type": "string",
+                    "description": "Username"
+                },
+                {
+                    "name": "action",
+                    "type": "string",
+                    "description": "Action"
+                },
+                {
+                    "name": "response",
+                    "type": "string",
+                    "description": "Response"
+                },
+                {
+                    "name": "repositorypath",
+                    "type": "string",
+                    "description": "Repository path"
+                }
+            ]
+        }
+    }
+}
+'@
+
+Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{workspace}/tables/ArtifactoryAccessLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParams
+
+
+
+Invoke-AzRestMethod -Path "/subscriptions/5f480061-759a-4223-a836-dd5487879992/resourcegroups/e2e-test-sentinel/providers/microsoft.operationalinsights/workspaces/daniel-e2e-test-workplace/tables/ArtifactoryAccessLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParams
