@@ -1,56 +1,69 @@
 
-## Create resources needed to stream logs to Azure Log Monitor and MS Sentinel
+## Create resources needed to stream logs to Azure Log Monitor. Logs can be used by MS Sentinel.
 
-Note: all resources must be create in the same region.
+The project is a POC, for the scope of the project we only use Access and Request logs. 
 
-1. Create Log Analytics workplace.
-2. Create a new application in MS Entra (or use existing).
-3. Create new application secret (copy the secret and secret ID)
-4. Create Data Collection Endpoint (copy resource ID).
+Note: all resources must be created in the same region.
+
+1. Create Log Analytics workspace.
+2. Create MS Sentinel instance in the created workspace.
+3. Create a new application in MS Entra (or use existing one).
+4. Create new application secret (copy the secret and secret ID, it will be needed later).
+5. Create Data Collection Endpoint (copy resource ID, it will be needed later).
 
 ### Template
 1. Create a new custom table(s) using Powershell command in [new_table_powershell.txt](new_table_powershell.txt)
-2. Create a new DCR using [ARM template](dcr_template.json).
-3. After deployment click on `Configure DCE` button and select DCE, created before.
+2. Create a new Data Collection Rules using [ARM template](dcr_template.json). As a result two DCRs will be created, one for Artifactory Access log, and one for Artifactory Request log. 
+3. After deployment click on `Configure DCE` button in each DCR and select Data Collection Endpoint, created before.
 
 ### Access
-1. Go to Access control (IAM) in DCR resource.
+1. Go to Access control (IAM) in Data Collection Rule resource.
 2. Click on `Add role assignment`.
 3. Select `Monitoring Metrics Publisher` job function role.
 4. Select the application, for which we created the secret.
 
 
-To test it with CURL, get access token first. 
+To test log ingestion with CURL, get access token first. 
 
 ```
-curl 'https://login.microsoftonline.com/{TENANT-ID-OF-THE-APP}/oauth2/v2.0/token' \
+curl 'https://login.microsoftonline.com/{APPLICATION_TENANT_ID}/oauth2/v2.0/token' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 -d 'grant_type=client_credentials' \
--d 'client_id={CLIENT-ID}' \
--d 'client_secret={CLIENT-SECRET}' \
+-d 'client_id={CLIENT_ID}' \
+-d 'client_secret={CLIENT_SECRET}' \
 -d 'scope=https%3A%2F%2Fmonitor.azure.com%2F.default'```
 ``` 
-Example of command to post logs:
+Example of command to post logs (Artifactory Access log):
 
 ```
-curl '{LOG-INGESTION-ENDPOINT}/dataCollectionRules/{DCR-IMMUTABLE-ID}/streams/{DATASOURCE-NAME}?api-version=2023-01-01' \
+curl '{LOG_INGESTION_ENDPOINT}/dataCollectionRules/{DCR_IMMUTABLE_ID}/streams/{DATASOURCE_NAME}?api-version=2023-01-01' \
 -H 'Log-Type: MyCustomLog' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer {access-key}' \
 -d '[
     {
-        "TimeGenerated": "2024-11-12T22:39:00.560Z",
-        "company": "JFrog",
-        "image": "fluentd",
-        "instance": "partnership",
+        "TimeGenerated": "2024-11-14T03:20:22.755Z",
+        "action": "LOGIN",
+        "response": "ACCEPTED",
+        "ip_address": "127.0.0.2",
+        "log_timestamp": "2024-11-14T03:20:20.705Z",
+        "message": "new test",
+        "repository_path": "",
+        "trace_id": "1cb671ed841eadf4",
+        "user_name": "jfxr@01hx9f0nk0cf98q4rv0fe56h0h",
     },
     {
-        "TimeGenerated": "2024-11-12T22:37:00.560Z",
-        "company": "JFrog",
-        "image": "fluentd",
-        "instance": "partnership",
+        "TimeGenerated": "2024-11-14T03:20:22.755Z",
+        "action": "LOGIN",
+        "response": "ACCEPTED",
+        "ip_address": "127.0.0.2",
+        "log_timestamp": "2024-11-14T03:20:20.705Z",
+        "message": "new test",
+        "repository_path": "",
+        "trace_id": "1cb671ed841eadf4",
+        "user_name": "jfxr@01hx9f0nk0cf98q4rv0fe56h0h",
     }
 ]'
 ```
 
-After posting logs the can be discovered in MS Sentinel. 
+After posting logs they can be discovered in MS Sentinel. 

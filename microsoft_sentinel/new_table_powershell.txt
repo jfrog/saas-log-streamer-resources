@@ -1,4 +1,6 @@
-$tableParams = @'
+## Artifactory Access Log properties
+
+$tableParamsAcc = @'
 {
     "properties": {
         "schema": {
@@ -9,18 +11,23 @@ $tableParams = @'
                     "type": "datetime",
                     "description": "The time at which the data was generated"
                 },
-               {
-                    "name": "traceid",
+                {
+                    "name": "message",
+                    "type": "string",
+                    "description": "Optional message"
+                },
+                {
+                    "name": "trace_id",
                     "type": "string",
                     "description": "Trace ID"
                 },
                 {
-                    "name": "userip",
+                    "name": "ip_address",
                     "type": "string",
                     "description": "User IP address"
                 },
                 {
-                    "name": "username",
+                    "name": "user_name",
                     "type": "string",
                     "description": "Username"
                 },
@@ -35,7 +42,7 @@ $tableParams = @'
                     "description": "Response"
                 },
                 {
-                    "name": "repositorypath",
+                    "name": "repository_path",
                     "type": "string",
                     "description": "Repository path"
                 }
@@ -45,8 +52,89 @@ $tableParams = @'
 }
 '@
 
-Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{workspace}/tables/ArtifactoryAccessLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParams
+## Artifactory Request Log properties
 
+$tableParamsReq = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryRequestLog_CL",
+            "columns": [
+                {
+                    "name": "TimeGenerated",
+                    "type": "datetime",
+                    "description": "The time at which the data was generated"
+                },
+                {
+                    "name": "image",
+                    "type": "string",
+                    "description": "Image name"
+                },
+                {
+                    "name": "ip_address",
+                    "type": "string",
+                    "description": "IP address of the requester"
+                },
+                {
+                    "name": "repo",
+                    "type": "string",
+                    "description": "Repository name"
+                },
+                {
+                    "name": "request_content_length",
+                    "type": "string",
+                    "description": "Length of the request content"
+                },
+                {
+                    "name": "request_duration",
+                    "type": "string",
+                    "description": "Duration of the request in milliseconds"
+                },
+                {
+                    "name": "request_method",
+                    "type": "string",
+                    "description": "HTTP request method"
+                },
+                {
+                    "name": "request_url",
+                    "type": "string",
+                    "description": "URL of the request"
+                },
+                {
+                    "name": "request_user_agent",
+                    "type": "string",
+                    "description": "User agent of the requester"
+                },
+                {
+                    "name": "response_content_length",
+                    "type": "string",
+                    "description": "Length of the response content"
+                },
+                {
+                    "name": "return_status",
+                    "type": "string",
+                    "description": "HTTP status code of the response"
+                },
+                {
+                    "name": "trace_id",
+                    "type": "string",
+                    "description": "Trace ID"
+                },
+                {
+                    "name": "user_name",
+                    "type": "string",
+                    "description": "Username of the requester"
+                }
+            ]
+        }
+    }
+}
+'@
 
+## Create Access Logs table
 
-Invoke-AzRestMethod -Path "/subscriptions/5f480061-759a-4223-a836-dd5487879992/resourcegroups/e2e-test-sentinel/providers/microsoft.operationalinsights/workspaces/daniel-e2e-test-workplace/tables/ArtifactoryAccessLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParams
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/{DATA_SOURCE_NAME}?api-version=2022-10-01" -Method PUT -payload $tableParamsAcc
+
+## Create Request Logs table
+
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/{DATA_SOURCE_NAME}?api-version=2022-10-01" -Method PUT -payload $tableParamsReq
