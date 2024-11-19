@@ -9,6 +9,73 @@ Users shouldn't expect log attributes names to be identical with Self-hosted ins
 
 [JFrog logs documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/request-log).
 
+## Payload attributes description
+
+Payload description for the call from Log Dispatcher to the log management platform (DataDog, Splunk, etc.).
+Usually, log management platforms use the same pattern of the payload, which consists of metadata and actual log message. We are formatting the payload according to the official log management platform documentation for HTTP data injection.
+
+### Datadog metadata
+
+* `ddsource` - (Required) Data source, constant, set to `jfrog_artifactory` for SaaS Log Streamer.
+* `ddtags` - (Optional) List of tags assigned to the payload. Assigned on MyJFrog platform by the customer along with DataDog token.
+* `hostname` - (Required) Hostname, constant, set to `jfrog-cloud` for SaaS Log Streamer.
+* `service` - (Required) The name of the service, which generated the log entry. Set to `jfrog.saas.rt.<log_name>`.
+* `tenant_id` - (Required) Technical server name (k8s namespace name). Used to sort logs and assign them to the proper destination info by Log Dispatcher. This value originates form JPMS. Most of the `tenant_id` are auto-generated, but some of them are the same as instance names.
+* `instance_name` - (Optional) Instance name in JPMS. Used in the Coralogix reporting.
+* `company_name` - (Optional) Company name in JPMS. Used in the Coralogix reporting.
+* `message` - (Required) Actual log message.
+
+### Splunk metadata
+
+* `time` - (Required) Timestamp in nano format (1711565731515000000).
+* `host` - (Required) Hostname, constant, set to `jfrog-cloud` for SaaS Log Streamer.
+* `event` - (Required) Actual log message. Splunk event contains several attributes that we include in DataDog metadata, such as: `company`, `instance`, `service` and `tenant_id`.
+
+### Dataset metadata
+
+* `serverType` - (Optional) Hostname, constant, set to `jfrog-cloud` for SaaS Log Streamer.
+* `serverId` - (Optional) Technical server name (k8s namespace name).
+* `instanceName` - (Optional) Instance name in JPMS. The same as used in the Coralogix reporting.
+* `company_name` - (Optional) Company name in JPMS. The same as used in the Coralogix reporting.
+
+### Dynatrace metadata
+
+* `log.source` - (Optional) Constant, set to `jfrog_artifactory`.
+* `host.name` - (Optional) Constant, set to `jfrog-cloud`.
+* `service.name` - (Optional) The name of the service, which generated the log entry. Set to `jfrog.saas.rt.<log_name>`.
+* `host.id` - (Optional) Instance name in JPMS. The same as used in the Coralogix reporting.
+* `host.hostname` - (Optional) Instance name in JPMS. The same as used in the Coralogix reporting.
+* `company.name` - (Optional) Company name in JPMS. The same as used in the Coralogix reporting.
+* `timestamp` - (Optional) Event timestamp in format `2006-01-02T15:04:05.000Z`,
+* `content` - (Optional) Actual log message.
+
+### New Relic metadata
+
+* `hostname` - (Optional) Constant, set to `jfrog-cloud`.
+* `tenant_id` - Technical server name (k8s namespace name). Used to sort logs and assign them to the proper destination info by Log Dispatcher. This value originates form JPMS. Most of the `tenant_id` are auto-generated, but some of them are the same as instance names.
+* `instance_name` - (Optional) Instance name in JPMS. The same as used in the Coralogix reporting.
+* `company_name` - (Optional) Company name in JPMS. The same as used in the Coralogix reporting.
+
+### Loki metadata
+
+* `service_name` - (Optional, top level "stream") Constant, set to `jfrog-cloud`.
+
+Loki only indexes the metadata attributes by design. Metadata is attached to each log record:
+
+* `tenant_id` - (Optional) Technical server name (k8s namespace name). Used to sort logs and assign them to the proper destination info by Log Dispatcher. This value originates form JPMS. Most of the `tenant_id` are auto-generated, but some of them are the same as instance names.
+* `instance_name` - (Optional) Instance name in JPMS. The same as used in the Coralogix reporting.
+* `company_name` - (Optional) Company name in JPMS. The same as used in the Coralogix reporting.
+* `service` - (Optional) The name of the service, which generated the log entry. Set to `jfrog.saas.rt.<log_name>`.
+
+Log by itself is not indexed and stored as a plain text.
+
+### Elastic metadata
+
+* `_index` - (Required) The index where the logs will be pushed. Set to `jfrog_cloud` by default, it will be customizable in MyJFrog UI in future releases.
+
+Elastic doesn't have any other metadata and we push logs as-is into the index.
+
+
 ### Artifactory Request Log
 
 * `image` -  Name of docker image. This attribute is only assigned if the request is related to docker pull/push event.
