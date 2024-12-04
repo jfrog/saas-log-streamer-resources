@@ -2,8 +2,11 @@
 
 Perform the following steps to set up log streaming with Grafana Loki.
 
-1. Create Loki Datasource if self-hosted Grafana is used. The Loki Datasource is created by default in the cloud version. Only basic authentication is supported at the moment. 
+1. Create Loki Datasource if self-hosted Grafana is used. The Loki Datasource is created by default in the cloud version. Only basic authentication is supported at the moment.
+
 ![loki_authentication.png](loki_authentication.png)
+
+![loki_authentication_1.png](loki_authentication_1.png)
 
 2. **Cloud version**: create a new Cloud access policy with **write** logs permissions.
 
@@ -11,7 +14,10 @@ Perform the following steps to set up log streaming with Grafana Loki.
 
 ![loki_create_policy.png](loki_create_policy.png)
 
+![loki_create_policy_1.png](loki_create_policy_1.png)
+
 Generate API token for this policy.
+
 ![loki_create_token.png](loki_create_token.png)
 
 3. **Self-hosted version**: create API key for your Loki user.
