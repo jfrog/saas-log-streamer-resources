@@ -1,11 +1,11 @@
-## Set up Cloud Log Streaming with DataDog
+## Set up Cloud Log Streaming with Datadog
 
 Perform the following steps to set up log streaming with Datadog.
 
-1. Fetch Datadog API key from the [Organization Settings](https://app.datadoghq.com/organization-settings/api-keys) page in DataDog.
+1. Fetch **Datadog API key** from the [Organization Settings](https://app.datadoghq.com/organization-settings/api-keys) page in Datadog.
 For more information, refer to the [Datadog documentation](https://docs.datadoghq.com/account_management/api-app-keys/).
 
-2. Identify your Datadog URL based on the location as listed in the [table](https://docs.datadoghq.com/getting_started/site/#access-the-datadog-site) in Datadog documentation.
+2. Identify your **Datadog URL** based on the location as listed in the [table](https://docs.datadoghq.com/getting_started/site/#access-the-datadog-site) in Datadog documentation.
 
 3. Form a key-value pair of any additional parameters that you need to add to the logs in the following format:
 ```
@@ -32,7 +32,7 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 ![datadog.png](datadog.png)
 
 
-10. Enter the Datadog API key select Datadog URL from the dropdown list.
+10. Enter the **Datadog API key** and select **Datadog URL** from the dropdown list.
 
 11. Enter the key-value pair that you formed in the **Datadog Tags** field.
 
