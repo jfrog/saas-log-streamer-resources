@@ -1,8 +1,12 @@
-## Set up Cloud Log Streaming with Dataset
+## Set up Cloud Log Streaming with Dynatrace
 
-Perform the following steps to set up log streaming with Dataset.
+Perform the following steps to set up log streaming with Dynatrace.
 
-1. In Dataset, click on your username on the top right of the screen, select the API Keys menu, and add a new key with Write access.
+1. In Dynatrace, go to **Access tokens** menu.
+
+![dynatrace_tokens.png](assets/dynatrace_tokens.png) 
+
+  Generate a new token with Ingest logs (`logs.ingest`) permissions.
 
 2. Go to the [MyJFrog Portal](http://my.jfrog.com/).
 
@@ -19,10 +23,10 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 6. Turn on the **Log Streaming** toggle.
 
-7. Select **Dataset**.
+7. Select **Dynatrace**.
 
-![dataset.png](assets/dataset.png)
+![dynatrace.png](assets/dynatrace.png)
 
-8. Enter the **Dataset API key** and the **Dataset HTTP event collection URL**. You can find the Dataset HTTP event collection URL in the official [Dataset documentation](https://app.scalyr.com/help/api?teamToken=d4woO_fl5pNaCF1rJ0xihQ--#addEvents).
+8. Click **Save**.
 
-9. Click **Save**.
+The example dashboard in JSON format can be found in the `dashboards` folder.

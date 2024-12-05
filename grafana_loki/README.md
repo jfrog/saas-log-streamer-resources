@@ -4,17 +4,17 @@ Perform the following steps to set up log streaming with Grafana Loki.
 
 1. Create Loki Datasource if self-hosted Grafana is used. The Loki Datasource is created by default in the cloud version. Only basic authentication is supported at the moment.
 
-![loki_authentication.png](loki_authentication.png)
+![loki_authentication.png](assets/loki_authentication.png)
 
 2. **Cloud version**: create a new Cloud access policy with **write** logs permissions.
 
-![loki_cloud_access_policy.png](loki_cloud_access_policy.png)
+![loki_cloud_access_policy.png](assets/loki_cloud_access_policy.png)
 
-![loki_create_policy.png](loki_create_policy.png)
+![loki_create_policy.png](assets/loki_create_policy.png)
 
 Generate API token for this policy.
 
-![loki_create_token.png](loki_create_token.png)
+![loki_create_token.png](assets/loki_create_token.png)
 
 3. **Self-hosted version**: create API key for your Loki user.
 4. Go to the [MyJFrog Portal](http://my.jfrog.com/).
@@ -33,7 +33,7 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 9. Select **Grafana loki**.
 
-![loki.png](loki.png)
+![loki.png](assets/loki.png)
 
 10. Enter the **API key** and **Loki URL**. Loki URL can be found in the Datasource settings, in 
 

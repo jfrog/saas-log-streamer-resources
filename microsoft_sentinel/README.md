@@ -1,4 +1,6 @@
 
+> Azure Log streaming is work in progress and can't be enabled in MyJFrog UI at the moment.
+
 ## Create resources needed to stream logs to Azure Log Monitor. Logs can be used by MS Sentinel.
 
 The project is a POC, for the scope of the project we only use Access and Request logs. 
@@ -12,8 +14,8 @@ Note: all resources must be created in the same region.
 5. Create Data Collection Endpoint (copy resource ID, it will be needed later).
 
 ### Template
-1. Create a new custom table(s) using Powershell command in [new_table_powershell.txt](new_table_powershell.txt)
-2. Create a new Data Collection Rules using [ARM template](dcr_template.json). As a result two DCRs will be created, one for Artifactory Access log, and one for Artifactory Request log. 
+1. Create a new custom table(s) using Powershell command in [new_table_powershell.txt](assets/new_table_powershell.txt)
+2. Create a new Data Collection Rules using [ARM template](assets/dcr_template.json). As a result two DCRs will be created, one for Artifactory Access log, and one for Artifactory Request log. 
 3. After deployment click on `Configure DCE` button in each DCR and select Data Collection Endpoint, created before.
 
 ### Access

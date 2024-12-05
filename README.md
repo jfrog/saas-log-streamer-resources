@@ -1,11 +1,11 @@
 ## JFrog SaaS Log Streamer
 
 The purpose of the application is to send logs from Artifactory SaaS instances to Log Management platforms of the customer's choice. 
-Official [documentation](https://jfrog.com/help/r/jfrog-hosting-models-documentation/jfrog-cloud-log-streaming) on how to setup the log streaming to various log management platforms.
+Official documentation on how to setup the log streaming to various log management platforms can be found [here](https://jfrog.com/help/r/jfrog-hosting-models-documentation/jfrog-cloud-log-streaming).
 This documentation provides information on the attributes of each log type, which we are sending. 
 
-Some of the attributes are renamed by the application before sending them to the Log Management platforms. This is done for compatibility with Log management platforms. 
-Users shouldn't expect log attributes names to be identical with Self-hosted instance logs. 
+Some of the attributes are renamed by the application before sending them to the Log Management platforms. This is done to assure compatibility with various Log Management platforms. 
+Users shouldn't expect log attributes names to be identical with Self-hosted Artifactory instance logs. 
 
 [JFrog logs documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/request-log).
 
@@ -29,6 +29,7 @@ Usually, log management platforms use the same pattern of the payload, which con
 
 * `time` - (Required) Timestamp in nano format (1711565731515000000).
 * `host` - (Required) Hostname, constant, set to `jfrog-cloud` for SaaS Log Streamer.
+* `sourcetype` - (Required) The name of the service, which generated the log entry. Set to `jfrog.saas.rt.<log_name>`.
 * `event` - (Required) Actual log message. Splunk event contains several attributes that we include in DataDog metadata, such as: `company`, `instance`, `service` and `tenant_id`.
 
 ### Dataset metadata
@@ -73,7 +74,7 @@ Log by itself is not indexed and stored as a plain text.
 
 * `_index` - (Required) The index where the logs will be pushed. Set to `jfrog_cloud` by default, it will be customizable in MyJFrog UI in future releases.
 
-Elastic doesn't have any other metadata and we push logs as-is into the index.
+Elastic doesn't have any other metadata and we push logs as-is into the index using [bulk API](https://www.elastic.co/guide/en/serverless/current/elasticsearch-ingest-data-through-api.html#elasticsearch-ingest-data-through-api-using-the-bulk-api).
 
 
 ### Artifactory Request Log

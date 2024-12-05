@@ -1,8 +1,8 @@
-## Set up Cloud Log Streaming with Dataset
+## Set up Cloud Log Streaming with Elastic
 
-Perform the following steps to set up log streaming with Dataset.
+Perform the following steps to set up log streaming with Elastic.
 
-1. In Dataset, click on your username on the top right of the screen, select the API Keys menu, and add a new key with Write access.
+1. Generate a new token in Elastic.
 
 2. Go to the [MyJFrog Portal](http://my.jfrog.com/).
 
@@ -19,10 +19,8 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 6. Turn on the **Log Streaming** toggle.
 
-7. Select **Dataset**.
+7. Select **Elastic**.
 
-![dataset.png](assets/dataset.png)
+![elastic.png](assets/elastic.png)
 
-8. Enter the **Dataset API key** and the **Dataset HTTP event collection URL**. You can find the Dataset HTTP event collection URL in the official [Dataset documentation](https://app.scalyr.com/help/api?teamToken=d4woO_fl5pNaCF1rJ0xihQ--#addEvents).
-
-9. Click **Save**.
+8. Click **Save**.

@@ -29,7 +29,7 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 9. Select **Datadog**.
 
-![datadog.png](datadog.png)
+![datadog.png](assets/datadog.png)
 
 
 10. Enter the **Datadog API key** and select **Datadog URL** from the dropdown list.
@@ -37,3 +37,5 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 11. Enter the key-value pair that you formed in the **Datadog Tags** field.
 
 12. Click **Save**.
+
+The example dashboard will be installed together with the [JFrog Cloud integration](https://docs.datadoghq.com/integrations/jfrog_platform_cloud/), which can be found in the Integrations menu in Datadog.
