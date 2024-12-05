@@ -6,15 +6,11 @@ Perform the following steps to set up log streaming with Grafana Loki.
 
 ![loki_authentication.png](loki_authentication.png)
 
-![loki_authentication_1.png](loki_authentication_1.png)
-
 2. **Cloud version**: create a new Cloud access policy with **write** logs permissions.
 
 ![loki_cloud_access_policy.png](loki_cloud_access_policy.png)
 
 ![loki_create_policy.png](loki_create_policy.png)
-
-![loki_create_policy_1.png](loki_create_policy_1.png)
 
 Generate API token for this policy.
 
