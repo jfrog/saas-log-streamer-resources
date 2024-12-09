@@ -1,0 +1,212 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dataCollectionRuleNameAccessLog": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the name of the Data Collection Rule to create."
+      }
+    },
+    "dataCollectionRuleNameRequestLog": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the name of the Data Collection Rule to create."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the location in which to create the Data Collection Rule."
+      }
+    },
+    "workspaceResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the Azure resource ID of the Log Analytics workspace to use."
+      }
+    },
+    "endpointResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the Azure resource ID of the Data Collection Endpoint to use."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "name": "[parameters('dataCollectionRuleNameAccessLog')]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2023-03-11",
+      "kind": "Direct",
+      "properties": {
+        "streamDeclarations": {
+          "Custom-ArtifactoryAccessLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "message",
+                "type": "string"
+              },
+              {
+                "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              },
+              {
+                "name": "action",
+                "type": "string"
+              },
+              {
+                "name": "response",
+                "type": "string"
+              },
+              {
+                "name": "repository_path",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "dataCollectionEndpoint": [
+            {
+              "resourceId": "[parameters('endpointResourceId')]",
+              "name": "myDataCollectionEndpoint"
+            }
+          ],
+          "logAnalytics": [
+            {
+              "workspaceResourceId": "[parameters('workspaceResourceId')]",
+              "name": "myworkspace"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessLogRawData"
+            ],
+            "destinations": [
+              "myworkspace"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessLog_CL"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "name": "[parameters('dataCollectionRuleNameRequestLog')]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2023-03-11",
+      "kind": "Direct",
+      "properties": {
+        "streamDeclarations": {
+          "Custom-ArtifactoryRequestLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "image",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "repo",
+                "type": "string"
+              },
+              {
+                "name": "request_content_length",
+                "type": "string"
+              },
+              {
+                "name": "request_duration",
+                "type": "string"
+              },
+              {
+                "name": "request_method",
+                "type": "string"
+              },
+              {
+                "name": "request_url",
+                "type": "string"
+              },
+              {
+                "name": "request_user_agent",
+                "type": "string"
+              },
+              {
+                "name": "response_content_length",
+                "type": "string"
+              },
+              {
+                "name": "return_status",
+                "type": "string"
+              },
+              {
+                "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "dataCollectionEndpoint": [
+            {
+              "resourceId": "[parameters('endpointResourceId')]",
+              "name": "myDataCollectionEndpoint"
+            }
+          ],
+          "logAnalytics": [
+            {
+              "workspaceResourceId": "[parameters('workspaceResourceId')]",
+              "name": "myworkspace"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-ArtifactoryRequestLogRawData"
+            ],
+            "destinations": [
+              "myworkspace"
+            ],
+            "outputStream": "Custom-ArtifactoryRequestLog_CL"
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "dataCollectionRuleNameAccessLogId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleNameAccessLog'))]"
+    },
+    "dataCollectionRuleNameRequestLogId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleNameRequestLog'))]"
+    }
+  }
+}

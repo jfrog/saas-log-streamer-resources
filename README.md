@@ -1,16 +1,5 @@
 ## JFrog SaaS Log Streamer
 
-The instructions to stream logs to different destinations:
-
-* [Datadog](datadog/README.md)
-* [Dataset](dataset/README.md)
-* [Dynatrace](dynatrace/README.md)
-* [Elastic](elastic/README.md)
-* [Grafana Loki](grafana_loki/README.md)
-* [New Relic](new_relic/README.md)
-* [Splunk](splunk/README.md)
-
-
 The purpose of the application is to send logs from Artifactory SaaS instances to Log Management platforms of the customer's choice. 
 Official documentation on how to setup the log streaming to various log management platforms can be found [here](https://jfrog.com/help/r/jfrog-hosting-models-documentation/jfrog-cloud-log-streaming).
 This documentation provides information on the attributes of each log type, which we are sending. 
