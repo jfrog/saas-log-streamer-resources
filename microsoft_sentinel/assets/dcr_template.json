@@ -2,13 +2,7 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "dataCollectionRuleNameAccessLog": {
-      "type": "string",
-      "metadata": {
-        "description": "Specifies the name of the Data Collection Rule to create."
-      }
-    },
-    "dataCollectionRuleNameRequestLog": {
+    "dataCollectionRuleName": {
       "type": "string",
       "metadata": {
         "description": "Specifies the name of the Data Collection Rule to create."
@@ -36,17 +30,105 @@
   "resources": [
     {
       "type": "Microsoft.Insights/dataCollectionRules",
-      "name": "[parameters('dataCollectionRuleNameAccessLog')]",
+      "name": "[parameters('dataCollectionRuleName')]",
       "location": "[parameters('location')]",
       "apiVersion": "2023-03-11",
       "kind": "Direct",
       "properties": {
         "streamDeclarations": {
+          "Custom-ArtifactoryRequestLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "image",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "repo",
+                "type": "string"
+              },
+              {
+                "name": "request_content_length",
+                "type": "int"
+              },
+              {
+                "name": "request_duration",
+                "type": "int"
+              },
+              {
+                "name": "request_method",
+                "type": "string"
+              },
+              {
+                "name": "request_url",
+                "type": "string"
+              },
+              {
+                "name": "request_user_agent",
+                "type": "string"
+              },
+              {
+                "name": "response_content_length",
+                "type": "int"
+              },
+              {
+                "name": "return_status",
+                "type": "string"
+              },
+              {
+                "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              }
+            ]
+          },
           "Custom-ArtifactoryAccessLogRawData": {
             "columns": [
               {
                 "name": "TimeGenerated",
                 "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
               },
               {
                 "name": "message",
@@ -77,51 +159,91 @@
                 "type": "string"
               }
             ]
-          }
-        },
-        "destinations": {
-          "dataCollectionEndpoint": [
-            {
-              "resourceId": "[parameters('endpointResourceId')]",
-              "name": "myDataCollectionEndpoint"
-            }
-          ],
-          "logAnalytics": [
-            {
-              "workspaceResourceId": "[parameters('workspaceResourceId')]",
-              "name": "myworkspace"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": [
-              "Custom-ArtifactoryAccessLogRawData"
-            ],
-            "destinations": [
-              "myworkspace"
-            ],
-            "outputStream": "Custom-ArtifactoryAccessLog_CL"
-          }
-        ]
-      }
-    },
-    {
-      "type": "Microsoft.Insights/dataCollectionRules",
-      "name": "[parameters('dataCollectionRuleNameRequestLog')]",
-      "location": "[parameters('location')]",
-      "apiVersion": "2023-03-11",
-      "kind": "Direct",
-      "properties": {
-        "streamDeclarations": {
-          "Custom-ArtifactoryRequestLogRawData": {
+          },
+          "Custom-ArtifactoryAccessAuditLogRawData": {
             "columns": [
               {
                 "name": "TimeGenerated",
                 "type": "datetime"
               },
               {
-                "name": "image",
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "event",
+                "type": "string"
+              },
+              {
+                "name": "expirationtime",
+                "type": "string"
+              },
+              {
+                "name": "issuer",
+                "type": "string"
+              },
+              {
+                "name": "refreshable",
+                "type": "string"
+              },
+              {
+                "name": "subject",
+                "type": "string"
+              },
+              {
+                "name": "token_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              }
+            ]
+          },
+          "Custom-ArtifactoryAccessSecurityAuditLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "entity_name",
+                "type": "string"
+              },
+              {
+                "name": "event",
+                "type": "string"
+              },
+              {
+                "name": "event_type",
                 "type": "string"
               },
               {
@@ -129,39 +251,115 @@
                 "type": "string"
               },
               {
-                "name": "repo",
-                "type": "string"
-              },
-              {
-                "name": "request_content_length",
-                "type": "string"
-              },
-              {
-                "name": "request_duration",
-                "type": "string"
-              },
-              {
-                "name": "request_method",
-                "type": "string"
-              },
-              {
-                "name": "request_url",
-                "type": "string"
-              },
-              {
-                "name": "request_user_agent",
-                "type": "string"
-              },
-              {
-                "name": "response_content_length",
-                "type": "string"
-              },
-              {
-                "name": "return_status",
+                "name": "logged_principal",
                 "type": "string"
               },
               {
                 "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_created",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_expirationTime",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_id",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_owner",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_scope",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_subject",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_type",
+                "type": "string"
+              }
+            ]
+          },
+          "Custom-ArtifactoryTrafficLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "action",
+                "type": "string"
+              },
+              {
+                "name": "artifact_path",
+                "type": "string"
+              },
+              {
+                "name": "billing_timestamp",
+                "type": "datetime"
+              },
+              {
+                "name": "consumption_unit",
+                "type": "string"
+              },
+              {
+                "name": "internal_service",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "package_type",
+                "type": "string"
+              },
+              {
+                "name": "artifactory_project",
+                "type": "string"
+              },
+              {
+                "name": "quantity",
+                "type": "int"
+              },
+              {
+                "name": "repo_type",
+                "type": "string"
+              },
+              {
+                "name": "repository",
+                "type": "string"
+              },
+              {
+                "name": "server_name",
                 "type": "string"
               },
               {
@@ -175,13 +373,13 @@
           "dataCollectionEndpoint": [
             {
               "resourceId": "[parameters('endpointResourceId')]",
-              "name": "myDataCollectionEndpoint"
+              "name": "jfrog-cloud-logs"
             }
           ],
           "logAnalytics": [
             {
               "workspaceResourceId": "[parameters('workspaceResourceId')]",
-              "name": "myworkspace"
+              "name": "daniel-jfrog-cloud-logs"
             }
           ]
         },
@@ -191,22 +389,54 @@
               "Custom-ArtifactoryRequestLogRawData"
             ],
             "destinations": [
-              "myworkspace"
+              "daniel-jfrog-cloud-logs"
             ],
             "outputStream": "Custom-ArtifactoryRequestLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessLogRawData"
+            ],
+            "destinations": [
+              "daniel-jfrog-cloud-logs"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessAuditLogRawData"
+            ],
+            "destinations": [
+              "daniel-jfrog-cloud-logs"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessAuditLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessSecurityAuditLogRawData"
+            ],
+            "destinations": [
+              "daniel-jfrog-cloud-logs"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessSecurityAuditLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryTrafficLogRawData"
+            ],
+            "destinations": [
+              "daniel-jfrog-cloud-logs"
+            ],
+            "outputStream": "Custom-ArtifactoryTrafficLog_CL"
           }
         ]
       }
     }
   ],
   "outputs": {
-    "dataCollectionRuleNameAccessLogId": {
+    "dataCollectionRuleName": {
       "type": "string",
-      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleNameAccessLog'))]"
-    },
-    "dataCollectionRuleNameRequestLogId": {
-      "type": "string",
-      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleNameRequestLog'))]"
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
     }
   }
 }
