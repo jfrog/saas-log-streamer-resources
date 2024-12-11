@@ -1,6 +1,6 @@
 ## JFrog SaaS Log Streamer
 
-The instructions to stream logs to different destinations:
+### Supported log streaming destinations
 
 * [Datadog](datadog/README.md)
 * [Dataset](dataset/README.md)
