@@ -20,6 +20,23 @@ Users shouldn't expect log attributes names to be identical with Self-hosted Art
 
 [JFrog logs documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/request-log).
 
+## Whitelisting
+
+Logs are streaming directly from the Artifactory instances to the customers' log management platform. To be able to stream logs to the log management platforms behind firewalls, please make sure to whitelist your Artifactory regions. 
+See the [official documentation](https://jfrog.com/help/r/what-are-artifactory-cloud-nated-ips/what-are-artifactory-cloud-nated-ips) for the reference. 
+
+Also, whitelist the following CIDR ranges for the management region:
+
+```
+52.206.165.145/32
+3.218.212.121/32
+3.95.51.114/32
+3.216.224.216/32
+```
+
+Whitelisting of these CIDR ranges is necessary, because MyJFrog sends a validation call to the customer's log management platform from the separate region. 
+
+
 ## Payload attributes description
 
 Payload description for the call from Log Dispatcher to the log management platform (DataDog, Splunk, etc.).
