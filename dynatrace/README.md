@@ -27,6 +27,8 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![dynatrace.png](assets/dynatrace.png)
 
-8. Click **Save**.
+8. Enter the **Dynatrace API key** and log ingestion URL.
+
+9. Click **Save**.
 
 The example dashboard in JSON format can be found in the `dashboards` folder.

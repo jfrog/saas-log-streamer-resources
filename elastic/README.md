@@ -2,7 +2,7 @@
 
 Perform the following steps to set up log streaming with Elastic.
 
-1. Generate a new token in Elastic.
+1. Generate a new API key in [Elastic](https://www.elastic.co/guide/en/kibana/current/api-keys.html).
 
 2. Go to the [MyJFrog Portal](http://my.jfrog.com/).
 
@@ -23,4 +23,6 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![elastic.png](assets/elastic.png)
 
-8. Click **Save**.
+8. Enter the **Elastic API key** and log ingestion URL in format `http://localhost:9200/_bulk?pretty`. 
+
+9. Click **Save**.
