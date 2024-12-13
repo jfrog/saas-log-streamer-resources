@@ -26,3 +26,6 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 8. Enter the **Elastic API key** and log ingestion URL in format `http://localhost:9200/_bulk?pretty`. 
 
 9. Click **Save**.
+
+Logs will be streamed to a new Elastic index `jfrog_cloud`. No further log parsing in Elastic is provided by JFrog.
+Index customization will be added later in the MyJFrog UI. 
