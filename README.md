@@ -120,6 +120,7 @@ Elastic doesn't have any other metadata and we push logs as-is into the index us
 * `response_content_length` -  The size of the server response in bytes, for example, the size of downloaded file. -1 if unknown (for example, chunked encoding).
 * `return_status` -  The HTTP return code for the request.
 * `trace_id` -  The trace id value.
+* `traceid` - (Deprecated) The trace id value, copy of `trace_id`, will be removed in the future releases.
 * `user_name` -  The requesting user's username or "anonymous" when accessed anonymously.
 
 Payload example:
