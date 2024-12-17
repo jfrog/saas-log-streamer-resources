@@ -1,3 +1,9 @@
+## 1.7.1 (December 17, 2024)
+
+IMPROVEMENTS:
+
+* Added attribute `trace_id` to Artifactory request log. This allows to correctly track traces in Datadog. The existing attribute `traceid` is still present in the log but will be removed in Q1 2025. 
+
 ## 1.7.0 (December 12, 2024)
 
 IMPROVEMENTS:
