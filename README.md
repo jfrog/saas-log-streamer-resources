@@ -1,5 +1,16 @@
 ## JFrog SaaS Log Streamer
 
+### Supported log streaming destinations
+
+* [Datadog](datadog/README.md)
+* [Dataset](dataset/README.md)
+* [Dynatrace](dynatrace/README.md)
+* [Elastic](elastic/README.md)
+* [Grafana Loki](grafana_loki/README.md)
+* [New Relic](new_relic/README.md)
+* [Splunk](splunk/README.md)
+
+
 The purpose of the application is to send logs from Artifactory SaaS instances to Log Management platforms of the customer's choice. 
 Official documentation on how to setup the log streaming to various log management platforms can be found [here](https://jfrog.com/help/r/jfrog-hosting-models-documentation/jfrog-cloud-log-streaming).
 This documentation provides information on the attributes of each log type, which we are sending. 
@@ -8,6 +19,23 @@ Some of the attributes are renamed by the application before sending them to the
 Users shouldn't expect log attributes names to be identical with Self-hosted Artifactory instance logs. 
 
 [JFrog logs documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/request-log).
+
+## Whitelisting
+
+Logs are streaming directly from the Artifactory instances to the customers' log management platform. To be able to stream logs to the log management platforms behind firewalls, please make sure to whitelist your Artifactory regions. 
+See the [official documentation](https://jfrog.com/help/r/what-are-artifactory-cloud-nated-ips/what-are-artifactory-cloud-nated-ips) for the reference. 
+
+Also, whitelist the following CIDR ranges for the management region:
+
+```
+52.206.165.145/32
+3.218.212.121/32
+3.95.51.114/32
+3.216.224.216/32
+```
+
+Whitelisting of these CIDR ranges is necessary, because MyJFrog sends a validation call to the customer's log management platform from the separate region. 
+
 
 ## Payload attributes description
 
@@ -92,6 +120,7 @@ Elastic doesn't have any other metadata and we push logs as-is into the index us
 * `response_content_length` -  The size of the server response in bytes, for example, the size of downloaded file. -1 if unknown (for example, chunked encoding).
 * `return_status` -  The HTTP return code for the request.
 * `trace_id` -  The trace id value.
+* `traceid` - (Deprecated) The trace id value, copy of `trace_id`, will be removed in the future releases.
 * `user_name` -  The requesting user's username or "anonymous" when accessed anonymously.
 
 Payload example:
