@@ -289,6 +289,10 @@
               {
                 "name": "data_changed_type",
                 "type": "string"
+              },
+              {
+                "name": "data_changed_raw",
+                "type": "string"
               }
             ]
           },

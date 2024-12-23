@@ -1,7 +1,7 @@
 
 > Azure Log streaming is work in progress and can't be enabled in MyJFrog UI at the moment.
 
-## Create resources needed to stream logs to Azure Log Monitor. Logs can be used by MS Sentinel.
+## Create resources needed to stream logs to Azure Log Analytics. Logs can be used by MS Sentinel.
 
 Note: **all resources must be created in the same region**.
 
@@ -26,11 +26,38 @@ Note: **all resources must be created in the same region**.
 3. Select `Monitoring Metrics Publisher` job function role.
 4. Select the application, for which we created the secret.
 
+
+Paste Data Collection Endpoint URL into URL field (format `https://<workspace-name>.<region>.ingest.monitor.azure.com`)
+
+Paste the following JSON into **Auth info** field:
+
+* `Secret` - Azure application secret.
+* `AzureTenantId` - Application Tenant ID 
+* `AzureClientId` - Application Client ID.
+* `AzureDataCollectionRule` - Name of Data Collection Rule, `Immutable ID` in format `dcr-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
+Names of the streams are the same as set in the script, which created the custom tables. 
+
+```
+{
+    "Secret": "<AzureClientSecret>",
+    "AzureTenantId": "<AzureTenantId>",
+    "AzureClientId": "<AzureClientId>",
+    "AzureDataCollectionRule": "<dcr-xxxxx>",
+    "AzureRequestLogStreamName": "Custom-ArtifactoryRequestLogRawData",
+    "AzureAccessLogStreamName": "Custom-ArtifactoryAccessLogRawData",
+    "AzureAccessAuditLogStreamName": "Custom-ArtifactoryAccessAuditLogRawData",
+    "AzureAccessSecurityLogStreamName": "Custom-ArtifactoryAccessSecurityLogRawData",
+    "AzureTrafficLogStreamName": "Custom-ArtifactoryTrafficLogRawData"
+}
+```
+
+### Testing
+
 Variables, needed to stream logs:
 1. `${DCR_IMMUTABLE_ID}` - copy `Immutable ID` from the Data Collection rule. dcr-a2120123348548b4b38e991d7ce6bbe7
 2. `${LOG_INGESTION_ENDPOINT}` - copy `Log ingestion` from Data Collection rules -> Data Collection Endpoint.
-3. `${DATASOURCE_NAME}` - Data Collection Rules -> Data sources. Use the table names, URLs will be unique per log type. 
-
+3. `${DATASOURCE_NAME}` - Data Collection Rules -> Data sources. Use the table names, URLs will be unique per log type.
 
 To test log ingestion with CURL, get access token first. 
 
@@ -75,4 +102,4 @@ curl '${LOG_INGESTION_ENDPOINT}/dataCollectionRules/${DCR_IMMUTABLE_ID}/streams/
 ]'
 ```
 
-After posting logs they can be discovered in MS Sentinel. 
+After posting logs they can be discovered in MS Sentinel and in Log Analytics workspace.

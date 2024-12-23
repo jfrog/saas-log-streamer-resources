@@ -348,6 +348,11 @@ $tableParamsAccSecAudit = @'
                    "name": "data_changed_type",
                    "type": "string",
                    "description": "Type of the change"
+               },
+               {
+                   "name": "data_changed_raw",
+                   "type": "string",
+                   "description": "JSON string with custom data"
                }
            ]
         }
