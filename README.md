@@ -161,6 +161,7 @@ Payload example:
 * `log_timestamp` - (Required)  The date and time the message was logged, in UTC time with the standard format: [yyyy-MM-dd'T'HH:mm:ss.SSSZ] based on RFC-3339. If timestamp is missing, log message is dropped (except Dynatrace).
 * `request_duration` - The time in ms for the request to process.
 * `package` - Package type.
+* `group` - Type of action.
 
 Payload example: 
 
@@ -168,6 +169,7 @@ Payload example:
 {
     "log_timestamp": "2025-01-13T14:29:15.414Z",
     "package": "nuget",
+    "group": "download",
     "remote_repository": "nuget-remote",
     "request_content_length": 0,
     "request_duration": 44,
