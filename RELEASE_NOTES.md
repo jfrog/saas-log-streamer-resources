@@ -1,3 +1,9 @@
+## 1.9.1 (January 28, 2025)
+
+IMPROVEMENTS:
+
+* Added attribute `group` to Artifactory request log. Possible values are `download` and `probes`.
+
 ## 1.9.0 (January 14, 2025)
 
 IMPROVEMENTS:

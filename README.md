@@ -124,6 +124,7 @@ Elastic doesn't have any other metadata and we push logs as-is into the index us
 * `trace_id` -  The trace id value.
 * `traceid` - (Deprecated) The trace id value, copy of `trace_id`, will be removed in the future releases.
 * `user_name` -  The requesting user's username or "anonymous" when accessed anonymously.
+* `group` - Type of action.
 
 Payload example:
 
@@ -142,7 +143,8 @@ Payload example:
     "response_content_length": 0,
     "return_status": "200",
     "trace_id": "fb6ea090c75631aa",
-    "user_name": "non_authenticated_user"
+    "user_name": "non_authenticated_user",
+    "group": "download"
 }
 ```
 
