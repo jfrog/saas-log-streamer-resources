@@ -14,6 +14,12 @@
         "description": "Specifies the location in which to create the Data Collection Rule."
       }
     },
+    "resourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the resource group in which to create the Data Collection Rule."
+      }
+    },
     "workspaceResourceId": {
       "type": "string",
       "metadata": {
@@ -383,7 +389,7 @@
           "logAnalytics": [
             {
               "workspaceResourceId": "[parameters('workspaceResourceId')]",
-              "name": "daniel-jfrog-cloud-logs"
+              "name": "[parameters('resourceGroup')]"
             }
           ]
         },
@@ -393,7 +399,7 @@
               "Custom-ArtifactoryRequestLogRawData"
             ],
             "destinations": [
-              "daniel-jfrog-cloud-logs"
+              "[parameters('resourceGroup')]"
             ],
             "outputStream": "Custom-ArtifactoryRequestLog_CL"
           },
@@ -402,7 +408,7 @@
               "Custom-ArtifactoryAccessLogRawData"
             ],
             "destinations": [
-              "daniel-jfrog-cloud-logs"
+              "[parameters('resourceGroup')]"
             ],
             "outputStream": "Custom-ArtifactoryAccessLog_CL"
           },
@@ -411,7 +417,7 @@
               "Custom-ArtifactoryAccessAuditLogRawData"
             ],
             "destinations": [
-              "daniel-jfrog-cloud-logs"
+              "[parameters('resourceGroup')]"
             ],
             "outputStream": "Custom-ArtifactoryAccessAuditLog_CL"
           },
@@ -420,7 +426,7 @@
               "Custom-ArtifactoryAccessSecurityAuditLogRawData"
             ],
             "destinations": [
-              "daniel-jfrog-cloud-logs"
+              "[parameters('resourceGroup')]"
             ],
             "outputStream": "Custom-ArtifactoryAccessSecurityAuditLog_CL"
           },
@@ -429,7 +435,7 @@
               "Custom-ArtifactoryTrafficLogRawData"
             ],
             "destinations": [
-              "daniel-jfrog-cloud-logs"
+              "[parameters('resourceGroup')]"
             ],
             "outputStream": "Custom-ArtifactoryTrafficLog_CL"
           }

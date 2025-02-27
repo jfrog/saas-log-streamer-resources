@@ -483,4 +483,4 @@ Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESO
 
 ## Create Traffic Logs table
 
-Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryTrafficLog_CL?api-version=2022-10-01" -Method PUT -payload tableParamsTraffic
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryTrafficLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParamsTraffic
