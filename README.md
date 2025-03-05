@@ -107,6 +107,8 @@ Elastic doesn't have any other metadata and we push logs as-is into the index us
 
 ### Artifactory Request Log
 
+[Official documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/request-log)
+
 * `image` -  Name of docker image. This attribute is only assigned if the request is related to docker pull/push event.
 * `log_timestamp` - The date and time the message was logged, in UTC time with the standard format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ` based on RFC-3339. If timestamp is missing, log message is dropped (except Dynatrace).
 * `remote_address` - (Deprecated) The IP address of the remote caller (ipv4 or ipv6). Will be removed in the next major version.
@@ -122,6 +124,7 @@ Elastic doesn't have any other metadata and we push logs as-is into the index us
 * `trace_id` -  The trace id value.
 * `traceid` - (Deprecated) The trace id value, copy of `trace_id`, will be removed in the future releases.
 * `user_name` -  The requesting user's username or "anonymous" when accessed anonymously.
+* `group` - Type of action.
 
 Payload example:
 
@@ -140,12 +143,50 @@ Payload example:
     "response_content_length": 0,
     "return_status": "200",
     "trace_id": "fb6ea090c75631aa",
-    "user_name": "non_authenticated_user"
+    "user_name": "non_authenticated_user",
+    "group": "download"
 }
 ```
 
+### Artifactory Request Out Log (Outbound Request Log)
+
+[Official documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/outbound-request-log)
+
+* `user_name` - The requesting user's username or "anonymous" when accessed anonymously.
+* `request_method` - The HTTP request method, in UPPERCASE.
+* `request_url` - The URL for the remote resource.
+* `request_content_length` - The size of the user request in bytes, for example, the size of an uploaded file. -1 if unknown.
+* `remote_repository` - The name of the remote repository.
+* `trace_id` - The trace id value.
+* `response_content_length` - The size of the server response in bytes, for example, the size of downloaded file. -1 if unknown (for example, chunked encoding).
+* `return_status` - The HTTP return code for the request.
+* `log_timestamp` - (Required)  The date and time the message was logged, in UTC time with the standard format: [yyyy-MM-dd'T'HH:mm:ss.SSSZ] based on RFC-3339. If timestamp is missing, log message is dropped (except Dynatrace).
+* `request_duration` - The time in ms for the request to process.
+* `package` - Package type.
+* `group` - Type of action.
+
+Payload example: 
+
+```
+{
+    "log_timestamp": "2025-01-13T14:29:15.414Z",
+    "package": "nuget",
+    "group": "download",
+    "remote_repository": "nuget-remote",
+    "request_content_length": 0,
+    "request_duration": 44,
+    "request_method": "HEAD",
+    "request_url": "https://api.nuget.org/v3/registration5-gz-semver2/microsoft.net.test.sdk/index.json",
+    "response_content_length": 667,
+    "return_status": "200",
+    "trace_id": "97350f7acf494a29",
+    "user_name": ""
+}
+```
 
 ### Artifactory Access Log
+
+[Official documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-log)
 
 * `action_response` - (Legacy) Action and response, concatenated by the parser to provide backward compatibility for older dashboard versions.
 * `action` - Action type (e.g. DOWNLOAD, DEPLOY, LOGIN, CONFIGURATION_CHANGE etc.
@@ -155,7 +196,7 @@ Payload example:
 * `message` - An optional system message.
 * `repository_path` - The repository that was accessed.
 * `trace_id` - The trace id value. Trace id is used to identify a request across services,
-* `user_name` - The accessing user's user name or "anonymous" when accessed anonymously.
+* `user_name` - The accessing user's username or "anonymous" when accessed anonymously.
 
 Payload example:
 
@@ -200,8 +241,9 @@ Payload example:
 ```
 
 
-
 ### Access Security Audit Log
+
+[Official documentation](https://jfrog.com/help/r/jfrog-platform-administration-documentation/audit-trail-log)
 
 * `data_changed` - A JSON describing the data that was changed. The following describes a map that specifies permissions when creating or updating a permission target: r = Read, t = Annotate, w = Deploy/Cache, d = Delete/Overwrite, m = Manage.
 * `entity_name` - The security entity that the operation modified. For example, permission target name, group name, username etc.
