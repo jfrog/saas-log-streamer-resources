@@ -1,0 +1,452 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dataCollectionRuleName": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the name of the Data Collection Rule to create."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the location in which to create the Data Collection Rule."
+      }
+    },
+    "resourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the resource group in which to create the Data Collection Rule."
+      }
+    },
+    "workspaceResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the Azure resource ID of the Log Analytics workspace to use."
+      }
+    },
+    "endpointResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the Azure resource ID of the Data Collection Endpoint to use."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "name": "[parameters('dataCollectionRuleName')]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2023-03-11",
+      "kind": "Direct",
+      "properties": {
+        "streamDeclarations": {
+          "Custom-ArtifactoryRequestLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "image",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "repo",
+                "type": "string"
+              },
+              {
+                "name": "request_content_length",
+                "type": "int"
+              },
+              {
+                "name": "request_duration",
+                "type": "int"
+              },
+              {
+                "name": "request_method",
+                "type": "string"
+              },
+              {
+                "name": "request_url",
+                "type": "string"
+              },
+              {
+                "name": "request_user_agent",
+                "type": "string"
+              },
+              {
+                "name": "response_content_length",
+                "type": "int"
+              },
+              {
+                "name": "return_status",
+                "type": "string"
+              },
+              {
+                "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              }
+            ]
+          },
+          "Custom-ArtifactoryAccessLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "message",
+                "type": "string"
+              },
+              {
+                "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              },
+              {
+                "name": "action",
+                "type": "string"
+              },
+              {
+                "name": "response",
+                "type": "string"
+              },
+              {
+                "name": "repository_path",
+                "type": "string"
+              }
+            ]
+          },
+          "Custom-ArtifactoryAccessAuditLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "event",
+                "type": "string"
+              },
+              {
+                "name": "expirationtime",
+                "type": "string"
+              },
+              {
+                "name": "issuer",
+                "type": "string"
+              },
+              {
+                "name": "refreshable",
+                "type": "string"
+              },
+              {
+                "name": "subject",
+                "type": "string"
+              },
+              {
+                "name": "token_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              }
+            ]
+          },
+          "Custom-ArtifactoryAccessSecurityAuditLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "entity_name",
+                "type": "string"
+              },
+              {
+                "name": "event",
+                "type": "string"
+              },
+              {
+                "name": "event_type",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "logged_principal",
+                "type": "string"
+              },
+              {
+                "name": "trace_id",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_created",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_expirationTime",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_id",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_owner",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_scope",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_subject",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_type",
+                "type": "string"
+              },
+              {
+                "name": "data_changed_raw",
+                "type": "string"
+              }
+            ]
+          },
+          "Custom-ArtifactoryTrafficLogRawData": {
+            "columns": [
+              {
+                "name": "TimeGenerated",
+                "type": "datetime"
+              },
+              {
+                "name": "tenant_id",
+                "type": "string"
+              },
+              {
+                "name": "service",
+                "type": "string"
+              },
+              {
+                "name": "instance_name",
+                "type": "string"
+              },
+              {
+                "name": "company_name",
+                "type": "string"
+              },
+              {
+                "name": "action",
+                "type": "string"
+              },
+              {
+                "name": "artifact_path",
+                "type": "string"
+              },
+              {
+                "name": "billing_timestamp",
+                "type": "datetime"
+              },
+              {
+                "name": "consumption_unit",
+                "type": "string"
+              },
+              {
+                "name": "internal_service",
+                "type": "string"
+              },
+              {
+                "name": "ip_address",
+                "type": "string"
+              },
+              {
+                "name": "package_type",
+                "type": "string"
+              },
+              {
+                "name": "artifactory_project",
+                "type": "string"
+              },
+              {
+                "name": "quantity",
+                "type": "int"
+              },
+              {
+                "name": "repo_type",
+                "type": "string"
+              },
+              {
+                "name": "repository",
+                "type": "string"
+              },
+              {
+                "name": "server_name",
+                "type": "string"
+              },
+              {
+                "name": "user_name",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "destinations": {
+          "dataCollectionEndpoint": [
+            {
+              "resourceId": "[parameters('endpointResourceId')]",
+              "name": "jfrog-cloud-logs"
+            }
+          ],
+          "logAnalytics": [
+            {
+              "workspaceResourceId": "[parameters('workspaceResourceId')]",
+              "name": "[parameters('resourceGroup')]"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Custom-ArtifactoryRequestLogRawData"
+            ],
+            "destinations": [
+              "[parameters('resourceGroup')]"
+            ],
+            "outputStream": "Custom-ArtifactoryRequestLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessLogRawData"
+            ],
+            "destinations": [
+              "[parameters('resourceGroup')]"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessAuditLogRawData"
+            ],
+            "destinations": [
+              "[parameters('resourceGroup')]"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessAuditLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryAccessSecurityAuditLogRawData"
+            ],
+            "destinations": [
+              "[parameters('resourceGroup')]"
+            ],
+            "outputStream": "Custom-ArtifactoryAccessSecurityAuditLog_CL"
+          },
+          {
+            "streams": [
+              "Custom-ArtifactoryTrafficLogRawData"
+            ],
+            "destinations": [
+              "[parameters('resourceGroup')]"
+            ],
+            "outputStream": "Custom-ArtifactoryTrafficLog_CL"
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+    "dataCollectionRuleName": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
+    }
+  }
+}
