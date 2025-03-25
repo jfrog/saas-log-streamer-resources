@@ -19,7 +19,7 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 6. Turn on the **Log Streaming** toggle.
 
-7. Select **Splunk**.
+7. Select **New Relic**.
 
 ![newrelic.png](assets/newrelic.png)
 
