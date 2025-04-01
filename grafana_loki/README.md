@@ -35,6 +35,6 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![loki.png](assets/loki.png)
 
-10. Enter the **Auth info** in the format of `username:API_key` and **Loki URL**. Loki URL and username can be found in the Loki Datasource settings, in the Connection and Authentication sections. 
+10. Enter the **Auth info** in the format of `username:API_key` and **Loki URL**. Loki URL and username can be found in the Loki Datasource settings, in the Connection and Authentication sections.
 
 11. Click **Save**.

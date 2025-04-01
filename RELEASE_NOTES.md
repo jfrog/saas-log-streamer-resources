@@ -1,3 +1,7 @@
+## 1.9.2 (April 1, 2025)
+
+* Azure Log Monitor support is added to MyJFrog UI.
+
 ## 1.9.1 (January 28, 2025)
 
 IMPROVEMENTS:

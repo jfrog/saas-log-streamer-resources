@@ -1,0 +1,486 @@
+## Artifactory Request Log properties
+
+$tableParamsReq = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryRequestLog_CL",
+            "columns": [
+               {
+                   "name": "TimeGenerated",
+                   "type": "datetime",
+                   "description": "The time at which the data was generated"
+               },
+               {
+                   "name": "tenant_id",
+                   "type": "string",
+                   "description": "Identifier for the tenant"
+               },
+               {
+                   "name": "service",
+                   "type": "string",
+                   "description": "Name of the service"
+               },
+               {
+                   "name": "instance_name",
+                   "type": "string",
+                   "description": "Name of the specific instance associated with the logged data"
+               },
+               {
+                   "name": "company_name",
+                   "type": "string",
+                   "description": "Name of the company associated with the logs"
+               },
+               {
+                   "name": "image",
+                   "type": "string",
+                   "description": "Image name"
+               },
+               {
+                   "name": "ip_address",
+                   "type": "string",
+                   "description": "IP address of the requester"
+               },
+               {
+                   "name": "repo",
+                   "type": "string",
+                   "description": "Repository name"
+               },
+               {
+                   "name": "request_content_length",
+                   "type": "int",
+                   "description": "Length of the request content"
+               },
+               {
+                   "name": "request_duration",
+                   "type": "int",
+                   "description": "Duration of the request in milliseconds"
+               },
+               {
+                   "name": "request_method",
+                   "type": "string",
+                   "description": "HTTP request method"
+               },
+               {
+                   "name": "request_url",
+                   "type": "string",
+                   "description": "URL of the request"
+               },
+               {
+                   "name": "request_user_agent",
+                   "type": "string",
+                   "description": "User agent of the requester"
+               },
+               {
+                   "name": "response_content_length",
+                   "type": "int",
+                   "description": "Length of the response content"
+               },
+               {
+                   "name": "return_status",
+                   "type": "string",
+                   "description": "HTTP status code of the response"
+               },
+               {
+                   "name": "trace_id",
+                   "type": "string",
+                   "description": "Trace ID"
+               },
+               {
+                   "name": "user_name",
+                   "type": "string",
+                   "description": "Username of the requester"
+               }
+           ]
+        }
+    }
+}
+'@
+
+
+## Artifactory Access Log properties
+
+$tableParamsAcc = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryAccessLog_CL",
+            "columns": [
+               {
+                    "name": "TimeGenerated",
+                    "type": "datetime",
+                    "description": "The time at which the data was generated"
+               },
+               {
+                    "name": "tenant_id",
+                    "type": "string",
+                    "description": "Identifier for the tenant"
+               },
+               {
+                    "name": "service",
+                    "type": "string",
+                    "description": "Name of the service"
+               },
+               {
+                    "name": "instance_name",
+                    "type": "string",
+                    "description": "Name of the specific instance associated with the logged data"
+               },
+               {
+                    "name": "company_name",
+                    "type": "string",
+                    "description": "Name of the company associated with the logs"
+               },
+               {
+                    "name": "message",
+                    "type": "string",
+                    "description": "Optional message"
+               },
+               {
+                    "name": "trace_id",
+                    "type": "string",
+                    "description": "Trace ID"
+               },
+               {
+                    "name": "ip_address",
+                    "type": "string",
+                    "description": "User IP address"
+               },
+               {
+                    "name": "user_name",
+                    "type": "string",
+                    "description": "Username"
+               },
+               {
+                    "name": "action",
+                    "type": "string",
+                    "description": "Action"
+               },
+               {
+                    "name": "response",
+                    "type": "string",
+                    "description": "Response"
+               },
+               {
+                    "name": "repository_path",
+                    "type": "string",
+                    "description": "Repository path"
+               }
+            ]
+        }
+    }
+}
+'@
+
+## Artifactory Access Audit Log properties
+
+$tableParamsAccAudit = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryAccessAuditLog_CL",
+            "columns": [
+               {
+                   "name": "TimeGenerated",
+                   "type": "datetime",
+                   "description": "The time at which the data was generated"
+               },
+               {
+                   "name": "tenant_id",
+                   "type": "string",
+                   "description": "Identifier for the tenant"
+               },
+               {
+                   "name": "service",
+                   "type": "string",
+                   "description": "Name of the service"
+               },
+               {
+                   "name": "instance_name",
+                   "type": "string",
+                   "description": "Name of the specific instance associated with the event"
+               },
+               {
+                   "name": "company_name",
+                   "type": "string",
+                   "description": "Name of the company related to the event"
+               },
+               {
+                   "name": "event",
+                   "type": "string",
+                   "description": "Description of the event"
+               },
+               {
+                   "name": "expirationtime",
+                   "type": "string",
+                   "description": "Time when the token or event expires"
+               },
+               {
+                   "name": "issuer",
+                   "type": "string",
+                   "description": "Entity that issued the token"
+               },
+               {
+                   "name": "refreshable",
+                   "type": "string",
+                   "description": "Indicates if the token is refreshable"
+               },
+               {
+                   "name": "subject",
+                   "type": "string",
+                   "description": "Subject of the token or event"
+               },
+               {
+                   "name": "token_id",
+                   "type": "string",
+                   "description": "Unique identifier for the token"
+               },
+               {
+                   "name": "user_name",
+                   "type": "string",
+                   "description": "Username associated with the event"
+               }
+           ]
+        }
+    }
+}
+'@
+
+## Artifactory Access Security Audit Log properties
+
+$tableParamsAccSecAudit = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryAccessSecurityAuditLog_CL",
+            "columns": [
+               {
+                   "name": "TimeGenerated",
+                   "type": "datetime",
+                   "description": "The time at which the data was generated"
+               },
+               {
+                   "name": "tenant_id",
+                   "type": "string",
+                   "description": "Identifier for the tenant"
+               },
+               {
+                   "name": "service",
+                   "type": "string",
+                   "description": "Name of the service"
+               },
+               {
+                   "name": "instance_name",
+                   "type": "string",
+                   "description": "Name of the specific instance associated with the log"
+               },
+               {
+                   "name": "company_name",
+                   "type": "string",
+                   "description": "Name of the company associated with the log"
+               },
+               {
+                   "name": "entity_name",
+                   "type": "string",
+                   "description": "Name of the entity related to the log"
+               },
+               {
+                   "name": "event",
+                   "type": "string",
+                   "description": "Description of the event"
+               },
+               {
+                   "name": "event_type",
+                   "type": "string",
+                   "description": "Type of the event"
+               },
+               {
+                   "name": "ip_address",
+                   "type": "string",
+                   "description": "IP address of the logged principal"
+               },
+               {
+                   "name": "logged_principal",
+                   "type": "string",
+                   "description": "Principal who is associated with the logged action"
+               },
+               {
+                   "name": "trace_id",
+                   "type": "string",
+                   "description": "Trace ID for tracking"
+               },
+               {
+                   "name": "user_name",
+                   "type": "string",
+                   "description": "Username of the user who initiated the action"
+               },
+               {
+                   "name": "data_changed_created",
+                   "type": "string",
+                   "description": "Timestamp when the data was changed"
+               },
+               {
+                   "name": "data_changed_expirationTime",
+                   "type": "string",
+                   "description": "Expiration time of the change"
+               },
+               {
+                   "name": "data_changed_id",
+                   "type": "string",
+                   "description": "Identifier for the change"
+               },
+               {
+                   "name": "data_changed_owner",
+                   "type": "string",
+                   "description": "Owner of the event"
+               },
+               {
+                   "name": "data_changed_scope",
+                   "type": "string",
+                   "description": "Scope of the change"
+               },
+               {
+                   "name": "data_changed_subject",
+                   "type": "string",
+                   "description": "Subject of the change"
+               },
+               {
+                   "name": "data_changed_type",
+                   "type": "string",
+                   "description": "Type of the change"
+               },
+               {
+                   "name": "data_changed_raw",
+                   "type": "string",
+                   "description": "JSON string with custom data"
+               }
+           ]
+        }
+    }
+}
+'@
+
+## Artifactory Traffic Log properties
+
+$tableParamsTraffic = @'
+{
+    "properties": {
+        "schema": {
+            "name": "ArtifactoryTrafficLog_CL",
+            "columns": [
+               {
+                   "name": "TimeGenerated",
+                   "type": "datetime",
+                   "description": "The time at which the data was generated."
+               },
+               {
+                   "name": "tenant_id",
+                   "type": "string",
+                   "description": "Identifier for the tenant."
+               },
+               {
+                   "name": "service",
+                   "type": "string",
+                   "description": "Name of the service."
+               },
+               {
+                   "name": "instance_name",
+                   "type": "string",
+                   "description": "Name of the specific instance associated with the log."
+               },
+               {
+                   "name": "company_name",
+                   "type": "string",
+                   "description": "Name of the company associated with the log."
+               },
+               {
+                   "name": "action",
+                   "type": "string",
+                   "description": "Action performed related to the artifact."
+               },
+               {
+                   "name": "artifact_path",
+                   "type": "string",
+                   "description": "Path to the artifact."
+               },
+               {
+                   "name": "billing_timestamp",
+                   "type": "datetime",
+                   "description": "Timestamp related to billing."
+               },
+               {
+                   "name": "consumption_unit",
+                   "type": "string",
+                   "description": "Unit of consumption for billing purposes."
+               },
+               {
+                   "name": "internal_service",
+                   "type": "string",
+                   "description": "Identifier for the internal service."
+               },
+               {
+                   "name": "ip_address",
+                   "type": "string",
+                   "description": "IP address of the requester."
+               },
+               {
+                   "name": "package_type",
+                   "type": "string",
+                   "description": "Type of package being referenced."
+               },
+               {
+                   "name": "artifactory_project",
+                   "type": "string",
+                   "description": "Project associated with the action."
+               },
+               {
+                   "name": "quantity",
+                   "type": "int",
+                   "description": "Quantity involved in the action."
+               },
+               {
+                   "name": "repo_type",
+                   "type": "string",
+                   "description": "Type of repository."
+               },
+               {
+                   "name": "repository",
+                   "type": "string",
+                   "description": "Name of the repository."
+               },
+               {
+                   "name": "server_name",
+                   "type": "string",
+                   "description": "Name of the server."
+               },
+               {
+                   "name": "user_name",
+                   "type": "string",
+                   "description": "Username of the user who initiated the action."
+               }
+           ]
+        }
+    }
+}
+'@
+
+
+## Create Request Logs table
+
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryRequestLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParamsReq
+
+## Create Access Logs table
+
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryAccessLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParamsAcc
+
+## Create Access Audit Logs table
+
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryAccessAuditLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParamsAccAudit
+
+## Create Access Security Audit Logs table
+
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryAccessSecurityAuditLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParamsAccSecAudit
+
+## Create Traffic Logs table
+
+Invoke-AzRestMethod -Path "/subscriptions/{SUBSCRIPTION_ID}/resourcegroups/{RESOURCE_GROUP_NAME}/providers/microsoft.operationalinsights/workspaces/{WORKSPACE_NAME}/tables/ArtifactoryTrafficLog_CL?api-version=2022-10-01" -Method PUT -payload $tableParamsTraffic
