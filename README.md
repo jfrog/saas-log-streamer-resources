@@ -9,6 +9,7 @@
 * [Grafana Loki](grafana_loki/README.md)
 * [New Relic](new_relic/README.md)
 * [Splunk](splunk/README.md)
+* [Azure](azure/README.md)
 
 
 The purpose of the application is to send logs from Artifactory SaaS instances to Log Management platforms of the customer's choice. 
@@ -103,6 +104,13 @@ Log by itself is not indexed and stored as a plain text.
 * `_index` - (Required) The index where the logs will be pushed. Set to `jfrog_cloud` by default, it will be customizable in MyJFrog UI in future releases.
 
 Elastic doesn't have any other metadata and we push logs as-is into the index using [bulk API](https://www.elastic.co/guide/en/serverless/current/elasticsearch-ingest-data-through-api.html#elasticsearch-ingest-data-through-api-using-the-bulk-api).
+
+### Azure metadata
+
+* `tenant_id` - (Optional) Technical server name (k8s namespace name). Used to sort logs and assign them to the proper destination info by Log Dispatcher. This value originates form JPMS. Most of the `tenant_id` are auto-generated, but some of them are the same as instance names.
+* `instance_name` - (Optional) Instance name in JPMS. The same as used in the Coralogix reporting.
+* `company_name` - (Optional) Company name in JPMS. The same as used in the Coralogix reporting.
+* `service` - (Optional) The name of the service, which generated the log entry. Set to `jfrog.saas.rt.<log_name>`.
 
 
 ### Artifactory Request Log
