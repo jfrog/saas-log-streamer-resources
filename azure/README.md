@@ -63,7 +63,7 @@ Names of the streams are the same as set in the script, which created the custom
     "AzureRequestLogStreamName": "Custom-ArtifactoryRequestLogRawData",
     "AzureAccessLogStreamName": "Custom-ArtifactoryAccessLogRawData",
     "AzureAccessAuditLogStreamName": "Custom-ArtifactoryAccessAuditLogRawData",
-    "AzureAccessSecurityLogStreamName": "Custom-ArtifactoryAccessSecurityLogRawData",
+    "AzureAccessSecurityLogStreamName": "Custom-ArtifactoryAccessSecurityAuditLogRawData",
     "AzureTrafficLogStreamName": "Custom-ArtifactoryTrafficLogRawData"
 }
 ```
