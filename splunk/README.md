@@ -2,7 +2,7 @@
 
 Perform the following steps to set up log streaming with Splunk.
 
-1. If you have any firewall restrictions, whitelist your Artifactory region from this list.
+1. If you have any firewall restrictions, whitelist your Artifactory region from this list. See the [official documentation](https://jfrog.com/help/r/what-are-artifactory-cloud-nated-ips/what-are-artifactory-cloud-nated-ips) for the reference.
 
 2. Whitelist the following IPs for the management region:
 
