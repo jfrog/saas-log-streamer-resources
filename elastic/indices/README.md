@@ -1,9 +1,9 @@
-## Set up Cloud Log Streaming with Elastic
+## Set up Cloud Log Streaming with Elastic Bulk API
 
 Perform the following steps to set up log streaming with Elastic.
 
 1. Generate a new API key in [Elastic](https://www.elastic.co/guide/en/kibana/current/api-keys.html).
-Api key should have following privileges:
+   Api key should have following privileges:
 ```
 "write",
 "auto_configure",
@@ -28,11 +28,13 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 7. Select **Elastic**.
 
-![elastic.png](assets/elastic.png)
+8. Select **Bulk API**
 
-8. Enter the **Elastic API key** and log ingestion URL in format `http://localhost:9200/_bulk?pretty`. 
+![elastic.png](../assets/elastic.png)
 
-9. Click **Save**.
+9. Enter the **Elastic API key** and log ingestion URL in format `http://localhost:9200/_bulk?pretty`.
+
+10. Click **Save**.
 
 Logs will be streamed to a new Elastic index `jfrog_cloud`. No further log parsing in Elastic is provided by JFrog.
 Index customization will be added later in the MyJFrog UI. 
