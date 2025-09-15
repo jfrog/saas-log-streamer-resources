@@ -11,6 +11,7 @@
 * [New Relic](new_relic/README.md)
 * [Splunk](splunk/README.md)
 * [Azure](azure/README.md)
+* [Google Cloud Platform (GCP)](google_cloud_provider/README.md)
 
 
 The purpose of the application is to send logs from Artifactory SaaS instances to Log Management platforms of the customer's choice. 
