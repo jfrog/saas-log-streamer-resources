@@ -33,6 +33,8 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 9. Select **Grafana loki**.
 
+10. Select **Authentication Type** as **Basic AUTH**.
+
 ![loki.png](assets/loki.png)
 
 10. Enter the **Auth info** in the format of `username:API_key` and **Loki URL**. Loki URL and username can be found in the Loki Datasource settings, in the Connection and Authentication sections.
