@@ -17,8 +17,8 @@ Steps to generate a service account authentication key in the Google Cloud Platf
    * In the left navigation menu, go to IAM & Admin > Service Accounts
    * Or use the search bar and type "Service Accounts"
 
+Note: The Service account will need either the role "roles/logging.logWriter" or the related permissions.
 3. Create or Select Service Account
-
    `Option A`: Create New Service Account
    * Click "Create Service Account"
    * Enter a name and description
