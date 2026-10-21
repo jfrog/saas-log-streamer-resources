@@ -19,13 +19,12 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 6. Turn on the **Log Streaming** toggle.
 
-> Note: If your account has the multi-JPD (**Per JPD**) feature, the **Select your log streaming mode** section appears below the toggle. It shows **All JPDs** and **Per JPD**.
-> If your account does not have this feature, the vendor list appears directly below the toggle. In this case, follow **Option A** and skip its step 1.
+> Note: If your account has the **Per JPD** feature, the **Select your log streaming mode** section appears below the toggle. If not, the vendor list appears there instead. Start at step 2 of **Option A**.
 
-7. Follow **Option A** or **Option B**.
+7. Choose **Option A** or **Option B**.
 
-* Use **Option A: All JPDs** to send logs from every JPD to 1 destination.
-* Use **Option B: Per JPD** to give each JPD its own destination.
+* **Option A: All JPDs** sends logs from every JPD to a single destination.
+* **Option B: Per JPD** sends the logs of each JPD to its own destination. Different JPDs can use different vendors.
 
 #### Option A: All JPDs
 
@@ -35,7 +34,7 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![newrelic.png](assets/newrelic.png)
 
-3. Enter the **New Relic API key** and the **New Relic HTTP event collection URL**. You can find the New Relic HTTP event collection URL in the official [New Relic documentation](https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/).
+3. Enter the New Relic API key in the **API Key** field and the New Relic HTTP event collection URL in the **URL** field. You can find the New Relic HTTP event collection URL in the official [New Relic documentation](https://docs.newrelic.com/docs/logs/log-api/introduction-log-api/).
 
 4. Click **Save**.
 
@@ -45,20 +44,23 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![newrelic_per_jpd.png](assets/newrelic_per_jpd.png)
 
-2. Expand the row of the JPD that you want to configure.
+2. Expand the JPD you want to configure.
 
 3. Select **New Relic**.
 
-4. Enter the **New Relic API key** and the **New Relic HTTP event collection URL** for the destination of this JPD.
+4. Enter the New Relic API key in the **API Key** field and the New Relic HTTP event collection URL in the **URL** field for this JPD.
 
-5. Repeat steps 2–4 for each JPD that you want to configure. JPDs that you leave empty stay **Not configured**.
+5. Repeat steps 2–4 for each JPD you want to configure. Empty JPDs stay **Not configured**.
 
 6. Click **Save All**.
 
-Each JPD sends logs to 1 destination only. Different JPDs can use different vendors.
+> Note: If a JPD has a vendor but not all required fields, **Save All** stays disabled. Hover over **Save All** to see which JPDs need more information.
 
-> Note: When you switch from **All JPDs** to **Per JPD**, each JPD without its own settings starts with the **All JPDs** vendor and settings. Check each JPD before you click **Save All**.
+> Note: When you switch to **Per JPD**, MyJFrog fills each JPD that has no saved settings with the **All JPDs** settings. MyJFrog saves these values only when you click **Save All**. Check each JPD before you click **Save All**.
 
-> Note: When you switch from **Per JPD** to **All JPDs**, the **Switch to All JPDs?** dialog appears if JPDs have their own settings. If you click **Discard & switch**, MyJFrog discards the per-JPD settings. You cannot recover them.
+> [!WARNING]
+> When you switch back to **All JPDs**, a **Switch to All JPDs?** dialog appears if any JPD has its own settings. To continue, select the confirmation checkbox and click **Discard & switch**. MyJFrog then permanently deletes the per-JPD settings.
+
+#### Example dashboard
 
 The example dashboard in JSON format can be found in the `dashboards` folder.

@@ -27,25 +27,24 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 8. Turn on the **Log Streaming** toggle.
 
-> Note: If your account has the multi-JPD (**Per JPD**) feature, the **Select your log streaming mode** section appears below the toggle. It shows **All JPDs** and **Per JPD**.
-> If your account does not have this feature, the vendor list appears directly below the toggle. In this case, follow **Option A** and skip its step 1.
+> Note: If your account has the **Per JPD** feature, the **Select your log streaming mode** section appears below the toggle. If not, the vendor list appears there instead. Start at step 2 of **Option A**.
 
-9. Follow **Option A** or **Option B**.
+9. Choose **Option A** or **Option B**.
 
-* Use **Option A: All JPDs** to send logs from every JPD to 1 destination.
-* Use **Option B: Per JPD** to give each JPD its own destination.
+* **Option A: All JPDs** sends logs from every JPD to a single destination.
+* **Option B: Per JPD** sends the logs of each JPD to its own destination. Different JPDs can use different vendors.
 
 #### Option A: All JPDs
 
 1. Select **All JPDs**.
 
-2. Select **Datadog**.
+2. Select **DataDog**.
 
 ![datadog.png](assets/datadog.png)
 
-3. Enter the **Datadog API key** and select **Datadog URL** from the dropdown list.
+3. Enter the Datadog API key in the **API Key** field. Select your Datadog URL from the **DataDog HTTP endpoint information** list.
 
-4. Enter the key-value pair that you formed in the **Datadog Tags** field.
+4. Enter the key-value pair that you formed in the **DataDog tags** field.
 
 5. Click **Save**.
 
@@ -55,20 +54,23 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![datadog_per_jpd.png](assets/datadog_per_jpd.png)
 
-2. Expand the row of the JPD that you want to configure.
+2. Expand the JPD you want to configure.
 
-3. Select **Datadog**.
+3. Select **DataDog**.
 
-4. Enter the **Datadog API key**, **Datadog URL**, and **Datadog Tags** for the destination of this JPD.
+4. Enter the **API Key**, select the **DataDog HTTP endpoint information**, and enter the **DataDog tags** for this JPD.
 
-5. Repeat steps 2–4 for each JPD that you want to configure. JPDs that you leave empty stay **Not configured**.
+5. Repeat steps 2–4 for each JPD you want to configure. Empty JPDs stay **Not configured**.
 
 6. Click **Save All**.
 
-Each JPD sends logs to 1 destination only. Different JPDs can use different vendors.
+> Note: If a JPD has a vendor but not all required fields, **Save All** stays disabled. Hover over **Save All** to see which JPDs need more information.
 
-> Note: When you switch from **All JPDs** to **Per JPD**, each JPD without its own settings starts with the **All JPDs** vendor and settings. Check each JPD before you click **Save All**.
+> Note: When you switch to **Per JPD**, MyJFrog fills each JPD that has no saved settings with the **All JPDs** settings. MyJFrog saves these values only when you click **Save All**. Check each JPD before you click **Save All**.
 
-> Note: When you switch from **Per JPD** to **All JPDs**, the **Switch to All JPDs?** dialog appears if JPDs have their own settings. If you click **Discard & switch**, MyJFrog discards the per-JPD settings. You cannot recover them.
+> [!WARNING]
+> When you switch back to **All JPDs**, a **Switch to All JPDs?** dialog appears if any JPD has its own settings. To continue, select the confirmation checkbox and click **Discard & switch**. MyJFrog then permanently deletes the per-JPD settings.
+
+#### Example dashboard
 
 The example dashboard will be installed together with the [JFrog Cloud integration](https://docs.datadoghq.com/integrations/jfrog_platform_cloud/), which can be found in the Integrations menu in Datadog.

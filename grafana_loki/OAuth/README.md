@@ -21,13 +21,12 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 8. Turn on the **Log Streaming** toggle.
 
-> Note: If your account has the multi-JPD (**Per JPD**) feature, the **Select your log streaming mode** section appears below the toggle. It shows **All JPDs** and **Per JPD**.
-> If your account does not have this feature, the vendor list appears directly below the toggle. In this case, follow **Option A** and skip its step 1.
+> Note: If your account has the **Per JPD** feature, the **Select your log streaming mode** section appears below the toggle. If not, the vendor list appears there instead. Start at step 2 of **Option A**.
 
-9. Follow **Option A** or **Option B**.
+9. Choose **Option A** or **Option B**.
 
-* Use **Option A: All JPDs** to send logs from every JPD to 1 destination.
-* Use **Option B: Per JPD** to give each JPD its own destination.
+* **Option A: All JPDs** sends logs from every JPD to a single destination.
+* **Option B: Per JPD** sends the logs of each JPD to its own destination. Different JPDs can use different vendors.
 
 #### Option A: All JPDs
 
@@ -37,9 +36,9 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![loki_oauth.png](../assets/loki_oauth.png)
 
-3. Select **Authentication Type** as **OAuth**.
+3. Set **Authentication Type** to **OAuth**.
 
-4. Enter the **OAuth Token** and **Loki URL**. Loki URL can be found in the Loki Datasource settings, in the Connection and Authentication sections.
+4. Enter the OAuth token in the **Auth info** field and the Loki URL in the **URL** field. Loki URL can be found in the Loki Datasource settings, in the Connection and Authentication sections.
 
 5. Click **Save**.
 
@@ -49,20 +48,21 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 ![loki_oauth_per_jpd.png](../assets/loki_oauth_per_jpd.png)
 
-2. Expand the row of the JPD that you want to configure.
+2. Expand the JPD you want to configure.
 
 3. Select **Grafana loki**.
 
-4. Select **Authentication Type** as **OAuth**.
+4. Set **Authentication Type** to **OAuth**.
 
-5. Enter the **OAuth Token** and the **Loki URL** for the destination of this JPD.
+5. Enter the OAuth token in the **Auth info** field and the Loki URL in the **URL** field for this JPD.
 
-6. Repeat steps 2–5 for each JPD that you want to configure. JPDs that you leave empty stay **Not configured**.
+6. Repeat steps 2–5 for each JPD you want to configure. Empty JPDs stay **Not configured**.
 
 7. Click **Save All**.
 
-Each JPD sends logs to 1 destination only. Different JPDs can use different vendors.
+> Note: If a JPD has a vendor but not all required fields, **Save All** stays disabled. Hover over **Save All** to see which JPDs need more information.
 
-> Note: When you switch from **All JPDs** to **Per JPD**, each JPD without its own settings starts with the **All JPDs** vendor and settings. Check each JPD before you click **Save All**.
+> Note: When you switch to **Per JPD**, MyJFrog fills each JPD that has no saved settings with the **All JPDs** settings. MyJFrog saves these values only when you click **Save All**. Check each JPD before you click **Save All**.
 
-> Note: When you switch from **Per JPD** to **All JPDs**, the **Switch to All JPDs?** dialog appears if JPDs have their own settings. If you click **Discard & switch**, MyJFrog discards the per-JPD settings. You cannot recover them.
+> [!WARNING]
+> When you switch back to **All JPDs**, a **Switch to All JPDs?** dialog appears if any JPD has its own settings. To continue, select the confirmation checkbox and click **Discard & switch**. MyJFrog then permanently deletes the per-JPD settings.
