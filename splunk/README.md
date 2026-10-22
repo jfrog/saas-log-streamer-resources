@@ -32,13 +32,46 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 9. Turn on the **Log Streaming** toggle.
 
-10. Select **Splunk**.
+> Note: If your account has the **Per JPD** feature, the **Select your log streaming mode** section appears below the toggle. If not, the vendor list appears there instead. Start at step 2 of **Option A**.
+
+10. Choose **Option A** or **Option B**.
+
+* **Option A: All JPDs** sends logs from every JPD to a single destination.
+* **Option B: Per JPD** sends the logs of each JPD to its own destination. Different JPDs can use different vendors.
+
+#### Option A: All JPDs
+
+1. Select **All JPDs**.
+
+2. Select **Splunk**.
 
 ![splunk.png](assets/splunk.png)
 
-11. Enter the **Splunk HEC Token** and the **Splunk URL**.
+3. Enter the HEC token in the **Splunk HEC Token** field.
 
-12. Click **Save**.
+4. Enter the Splunk URL in the **Splunk HTTP endpoint information** field.
 
+5. Click **Save**.
 
+#### Option B: Per JPD
 
+1. Select **Per JPD**.
+
+![splunk_per_jpd.png](assets/splunk_per_jpd.png)
+
+2. Expand the JPD you want to configure.
+
+3. Select **Splunk**.
+
+4. Enter the **Splunk HEC Token** and the **Splunk HTTP endpoint information** for this JPD.
+
+5. Repeat steps 2–4 for each JPD you want to configure. Empty JPDs stay **Not configured**.
+
+6. Click **Save All**.
+
+> Note: If a JPD has a vendor but not all required fields, **Save All** stays disabled. Hover over **Save All** to see which JPDs need more information.
+
+> Note: When you switch to **Per JPD**, MyJFrog fills each JPD that has no saved settings with the **All JPDs** settings. MyJFrog saves these values only when you click **Save All**. Check each JPD before you click **Save All**.
+
+> [!WARNING]
+> When you switch back to **All JPDs**, a **Switch to All JPDs?** dialog appears if any JPD has its own settings. To continue, select the confirmation checkbox and click **Discard & switch**. MyJFrog then permanently deletes the per-JPD settings.

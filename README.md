@@ -13,6 +13,7 @@
 * [Azure](azure/README.md)
 * [Google Cloud Platform (GCP)](google_cloud_provider/README.md)
 
+Each vendor guide shows how to send logs from all JPDs to a single destination (**All JPDs**), or to set a destination for each JPD (**Per JPD**).
 
 The purpose of the application is to send logs from Artifactory SaaS instances to Log Management platforms of the customer's choice. 
 Official documentation on how to setup the log streaming to various log management platforms can be found [here](https://jfrog.com/help/r/jfrog-hosting-models-documentation/jfrog-cloud-log-streaming).

@@ -19,10 +19,44 @@ This opens the **MyJFrog Portal** in a new tab in your browser.
 
 6. Turn on the **Log Streaming** toggle.
 
-7. Select **Dataset**.
+> Note: If your account has the **Per JPD** feature, the **Select your log streaming mode** section appears below the toggle. If not, the vendor list appears there instead. Start at step 2 of **Option A**.
+
+7. Choose **Option A** or **Option B**.
+
+* **Option A: All JPDs** sends logs from every JPD to a single destination.
+* **Option B: Per JPD** sends the logs of each JPD to its own destination. Different JPDs can use different vendors.
+
+#### Option A: All JPDs
+
+1. Select **All JPDs**.
+
+2. Select **Dataset**.
 
 ![dataset.png](assets/dataset.png)
 
-8. Enter the **Dataset API key** and the **Dataset HTTP event collection URL**. You can find the Dataset HTTP event collection URL in the official [Dataset documentation](https://app.scalyr.com/help/api?teamToken=d4woO_fl5pNaCF1rJ0xihQ--#addEvents).
+3. Enter the Dataset API key in the **API Key** field and the Dataset HTTP event collection URL in the **URL** field. You can find the Dataset HTTP event collection URL in the official [Dataset documentation](https://app.scalyr.com/help/api?teamToken=d4woO_fl5pNaCF1rJ0xihQ--#addEvents).
 
-9. Click **Save**.
+4. Click **Save**.
+
+#### Option B: Per JPD
+
+1. Select **Per JPD**.
+
+![dataset_per_jpd.png](assets/dataset_per_jpd.png)
+
+2. Expand the JPD you want to configure.
+
+3. Select **Dataset**.
+
+4. Enter the Dataset API key in the **API Key** field and the Dataset HTTP event collection URL in the **URL** field for this JPD.
+
+5. Repeat steps 2–4 for each JPD you want to configure. Empty JPDs stay **Not configured**.
+
+6. Click **Save All**.
+
+> Note: If a JPD has a vendor but not all required fields, **Save All** stays disabled. Hover over **Save All** to see which JPDs need more information.
+
+> Note: When you switch to **Per JPD**, MyJFrog fills each JPD that has no saved settings with the **All JPDs** settings. MyJFrog saves these values only when you click **Save All**. Check each JPD before you click **Save All**.
+
+> [!WARNING]
+> When you switch back to **All JPDs**, a **Switch to All JPDs?** dialog appears if any JPD has its own settings. To continue, select the confirmation checkbox and click **Discard & switch**. MyJFrog then permanently deletes the per-JPD settings.
